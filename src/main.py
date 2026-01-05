@@ -57,19 +57,21 @@ def load_data(csv_path: Optional[str] = None) -> pd.DataFrame:
 def train_model(
     texts: list[str],
     labels: list[str],
-    test_size: float = 0.2,
+    test_size: float = 0.25,
     random_state: int = 42,
 ):
     """
     Обучает baseline-модель для классификации тональности.
     Возвращает обученный векторизатор, модель и метрики.
     """
+
+    # Для маленького демо-дата лучше не использовать stratify,
+    # чтобы избежать ошибок "least populated class..."
     X_train, X_test, y_train, y_test = train_test_split(
         texts,
         labels,
         test_size=test_size,
         random_state=random_state,
-        stratify=labels if len(set(labels)) > 1 else None,
     )
 
     # TF-IDF векторизация текста
@@ -130,8 +132,8 @@ def parse_args():
     parser.add_argument(
         "--test-size",
         type=float,
-        default=0.2,
-        help="Доля тестовой выборки (по умолчанию 0.2).",
+        default=0.25,
+        help="Доля тестовой выборки (по умолчанию 0.25).",
     )
     return parser.parse_args()
 
