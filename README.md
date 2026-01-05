@@ -73,6 +73,10 @@ python3 src/main.py --data data.csv
 [RESULT] Classification report:
 precision / recall / f1-score показаны для каждого класса
 
+## Confusion matrix
+
+![Confusion matrix](confusion_matrix.png)
+
 ---
 
 ## Технологический стек
